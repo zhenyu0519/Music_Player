@@ -1,5 +1,6 @@
 <template>
   <div class="tab">
+    <!-- 默认为‘a' 标签，此处改为'div' -->
     <router-link tag="div" class="tab-item" to="/recommend">
       <span class="tab-link">推荐</span>
     </router-link>
