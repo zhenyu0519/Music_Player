@@ -44,6 +44,9 @@ export default {
       this._setSliderWidth();
       this._initDots();
       this._initSlider();
+      if (this.autoPlay) {
+        this._play();
+      }
     }, 20);
   },
   methods: {
@@ -76,11 +79,21 @@ export default {
 
       this.slider.on("scrollEnd", () => {
         let pageIndex = this.slider.getCurrentPage().pageX;
+        console.log("page index: ", pageIndex);
         this.currentPageIndex = pageIndex;
+        if (this.autoPlay) {
+          this._play();
+        }
       });
     },
     _initDots() {
       this.dots = new Array(this.children.length);
+    },
+    _play() {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.slider.next();
+      }, this.interval);
     }
   }
 };
