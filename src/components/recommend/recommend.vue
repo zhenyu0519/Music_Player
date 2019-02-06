@@ -9,11 +9,11 @@
             </a>
           </div>
         </slider>
-        <div class="recommend-list">
+      </div>
+      <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
           <ul></ul>
         </div>
-      </div>
     </div>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
     }
   },
   components: {
-    slider: Slider
+    Slider
   }
 };
 </script>
