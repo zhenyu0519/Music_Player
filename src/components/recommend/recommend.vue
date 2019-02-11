@@ -12,7 +12,17 @@
       </div>
       <div class="recommend-list">
         <h1 class="list-title">热门歌单推荐</h1>
-        <ul></ul>
+        <ul>
+          <li v-for="item in discList" class="item" :key="item.dissid">
+            <div class="icon">
+              <img width="60" height="60" :src="item.imgurl">
+            </div>
+            <div class="text">
+              <h2 class="name" v-html="item.creator.name"></h2>
+              <p class="desc" v-html="item.dissname"></p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -25,7 +35,8 @@ import { ERR_OK } from "api/config";
 export default {
   data() {
     return {
-      recommends: []
+      recommends: [],
+      discList: []
     };
   },
   created() {
@@ -42,8 +53,8 @@ export default {
     },
     _getDiscList() {
       getDiscList().then(res => {
-        if ((res.code = ERR_OK)) {
-          console.log("data is ", res.data.list);
+        if (res.code === ERR_OK) {
+          this.discList = res.data.list;
         }
       });
     }
