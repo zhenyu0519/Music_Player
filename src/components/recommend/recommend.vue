@@ -1,12 +1,12 @@
 <template>
   <div class="recommend">
-    <scroll class="recommend-content" :data="discList">
+    <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
         <div v-if="recommends.length" class="slider-wrapper">
           <slider>
             <div v-for="item in recommends" :key="item.id">
               <a :href="item.linkUrl">
-                <img :src="item.picUrl">
+                <img @load="loadImage" :src="item.picUrl">
               </a>
             </div>
           </slider>
@@ -60,6 +60,10 @@ export default {
           this.discList = res.data.list;
         }
       });
+    },
+    loadImage() {
+      if (!this.checkLoaded) this.$refs.scroll.refresh();
+      this.checkLoaded = true;
     }
   },
   components: {
