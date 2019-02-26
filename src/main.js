@@ -3,6 +3,7 @@ import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
 import Routes from './router'
+import VueLazyLoad from 'vue-lazyload'
 // 取消移动端点击300毫秒延迟
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'; // eslint-disable-line
@@ -11,7 +12,9 @@ import 'common/stylus/index.styl'; // eslint-disable-line
 fastclick.attach(document.body)
 // 使用’vue-route‘
 Vue.use(VueRouter)
-
+Vue.use(VueLazyLoad, {
+  loading: require('common/img/default.png')
+})
 // 实例化route
 const router = new VueRouter({
   routes: Routes
